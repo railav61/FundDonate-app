@@ -32,7 +32,7 @@ function App() {
             <Route path="/Form" element={<Form />} />
             <Route path="/Payment" element={<Payments />} />
             <Route path="/Success" element={<Success />} />
-            <Route path="/Cancle" element={<Cancle />} />
+            <Route path="/Cancel" element={<Cancle />} />
           </Routes>
         </div>
         <div className="relative">
