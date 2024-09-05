@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Form = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [submit, setsubmit] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -22,11 +23,9 @@ const Form = () => {
   const [message, setMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(BASE_URL);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/form",
-        formData
-      );
+      const response = await axios.post(`${BASE_URL}/api/form`, formData);
 
       if (response.status === 200) {
         setMessage(response.data.message);

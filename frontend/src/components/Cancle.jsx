@@ -1,5 +1,5 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Cancle() {
   const styles = {
@@ -48,10 +48,10 @@ export default function Cancle() {
     },
   };
 
-  //   const navigate = useNavigate();
-  //   const handleReturnToDashboard = () => {
-  //     navigate("/Homepage");
-  //   };
+  const navigate = useNavigate();
+  const handleReturnToDashboard = () => {
+    navigate("/Homepage");
+  };
 
   return (
     <div style={styles.container}>

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 const Payments = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const appId = import.meta.env.VITE_APP_ID;
+
   const [paymentDetails, setPaymentDetails] = useState({
     amount: "",
     orderId: `order_${Date.now()}`,
@@ -16,7 +19,6 @@ const Payments = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const appId = import.meta.env.VITE_APP_ID;
   //payment
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -31,16 +33,13 @@ const Payments = () => {
       const body = {
         details: paymentDetails,
       };
-      const response = await fetch(
-        "http://localhost:5000/api/create-checkout-session",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/api/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
       console.log("Request sent"); // Check if this logs
       if (!response.ok) {

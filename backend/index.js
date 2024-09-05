@@ -8,20 +8,15 @@ const User = require("./Models/user");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
-
+app.use(cors());
 app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 5000;
+const BASE_URL = process.env.BASE_URL;
+
 const MONGO_URL = process.env.MONGO_URL;
 mongoose
   .connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 3000,
   })
   .then(() => console.log("Connected to MongoDB Atlas"))
@@ -34,7 +29,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
   // Ensure the amount is at least 50 cents (₹50.00 in INR)
   const minimumAmountInPaise = 5000; // 50 * 100 = 5000 paise
 
-  if (amountInPaise < minimumAmountInPaise) {
+  if (amountInPaise < minimumAmountInPaise || details.amount === null) {
     return res.status(400).json({
       error: "The amount must be at least ₹50.00.",
     });
@@ -54,8 +49,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: userPayments,
     mode: "payment",
-    success_url: "http://localhost:5173/Success",
-    cancel_url: "http://localhost:5173/Cancle",
+    success_url: `${BASE_URL}/Success`,
+    cancel_url: `${BASE_URL}/Success`,
   });
 
   res.json({ id: session.id });

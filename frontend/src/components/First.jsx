@@ -14,6 +14,8 @@ import Typography from "@mui/material/Typography";
 import AdbIcon from "@mui/icons-material/Adb";
 // import { useNavigate } from "react-router-dom";
 
+// const pages = ["hello", "hello1", "hello2"];
+
 function First({
   SetModeofdisp,
   user,
@@ -85,7 +87,27 @@ function First({
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              {isAuthenticated ? (
+                <Button
+                  variant="contained"
+                  sx={{ ml: 1, px: 3 }}
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  LogOut
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  sx={{ ml: 1, px: 2 }}
+                  onClick={() => {
+                    loginWithRedirect();
+                  }}
+                >
+                  Signup
+                </Button>
+              )}
             </IconButton>
             {/* <Menu
               id="menu-appbar"

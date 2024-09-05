@@ -75,7 +75,7 @@ export default function Success() {
           purchase!
         </p>
         <button style={styles.button} onClick={handleReturnToDashboard}>
-          Return to Dashboard
+          Return to HomePage
         </button>
       </main>
     </div>
