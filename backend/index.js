@@ -8,7 +8,12 @@ const User = require("./Models/user");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://fund-donate-app.vercel.app", // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5000;
