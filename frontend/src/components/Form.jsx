@@ -23,7 +23,6 @@ const Form = () => {
   const [message, setMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(BASE_URL);
     try {
       const response = await axios.post(`${BASE_URL}/api/form`, formData);
 
