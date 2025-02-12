@@ -13,7 +13,7 @@ const BASE_URL = process.env.BASE_URL;
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'https://portfolio-iota-liart-21.vercel.app',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
