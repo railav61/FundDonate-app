@@ -13,7 +13,7 @@ const BASE_URL = process.env.BASE_URL;
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: https://portfolio-iota-liart-21.vercel.app,
+  origin: 'https://portfolio-iota-liart-21.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -59,7 +59,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
     success_url: `https://portfolio-iota-liart-21.vercel.app/Success`,
     cancel_url: `https://portfolio-iota-liart-21.vercel.app/Cancel`,
   });
-
+console.log(session.id);
   res.json({ id: session.id });
 });
 
