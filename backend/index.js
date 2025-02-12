@@ -59,7 +59,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
     success_url: `${BASE_URL}/Success`,
     cancel_url: `${BASE_URL}/Cancel`,
   });
-console.log(session.id);
+
   res.json({ id: session.id });
 });
 
