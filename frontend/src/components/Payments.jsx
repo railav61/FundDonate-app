@@ -22,7 +22,6 @@ const Payments = () => {
   //payment
   const handlePayment = async (e) => {
     e.preventDefault();
-    console.log("Payment function triggered"); // Check if this logs
 
     try {
       // Load Stripe and continue
@@ -41,14 +40,11 @@ const Payments = () => {
         body: JSON.stringify(body),
       });
 
-      console.log("Request sent"); // Check if this logs
       if (!response.ok) {
-        console.error("Response not OK", response.status);
         throw new Error("Failed to create checkout session");
       }
 
       const session = await response.json();
-      console.log("Session created:", session); // Check if this logs
 
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
