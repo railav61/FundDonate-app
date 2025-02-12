@@ -8,16 +8,18 @@ const User = require("./Models/user");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 const app = express();
+
+const BASE_URL = process.env.BASE_URL;
+const PORT = process.env.PORT || 5000;
+
 app.use(cors({
-  origin: "https://fund-donate-app.vercel.app", // Replace with your frontend URL
+  origin: https://portfolio-iota-liart-21.vercel.app,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 5000;
-const BASE_URL = process.env.BASE_URL;
 
 const MONGO_URL = process.env.MONGO_URL;
 mongoose
@@ -54,8 +56,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: userPayments,
     mode: "payment",
-    success_url: `${BASE_URL}/Success`,
-    cancel_url: `${BASE_URL}/Cancel`,
+    success_url: `https://portfolio-iota-liart-21.vercel.app/Success`,
+    cancel_url: `https://portfolio-iota-liart-21.vercel.app/Cancel`,
   });
 
   res.json({ id: session.id });
